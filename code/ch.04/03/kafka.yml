@@ -1,0 +1,6 @@
+- module: kafka
+  #metricsets:
+  #  - partition
+  #  - consumergroup
+  period: 3s
+  hosts: ["broker-01:9092"]

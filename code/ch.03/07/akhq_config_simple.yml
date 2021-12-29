@@ -1,0 +1,5 @@
+akhq:
+  connections:
+    local:
+      properties:
+        bootstrap.servers: "broker-01:9092"

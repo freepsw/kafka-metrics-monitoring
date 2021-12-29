@@ -1,0 +1,33 @@
+init_config:
+
+    is_jmx: true
+    collect_default_metrics: true
+    new_gc_metrics: true
+
+instances:
+
+  - host: localhost
+    port: 9999
+    tags:
+      - kafka:broker0
+
+  - host: kafka-client
+    port: 9997
+    tags:
+      - kafka:consumer0
+
+  - host: kafka-client
+    port: 9998
+    tags:
+      - kafka:producer0
+
+## Log Section
+# logs:
+#   - type: file
+#     path: /home/freepsw.10/kafka_2.12-2.8.0/logs/server.log
+#     source: kafka
+#     service: myapp
+#     log_processing_rules:
+#     - type: multi_line
+#       name: start_with_date
+#       pattern: \d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])

@@ -1,0 +1,9 @@
+## Basic Configuration ##
+api_key: 90fb7xxxxxxxxxxxx
+site: datadoghq.com
+
+## Log collection Configuration ##
+## Enable Datadog Agent log collection by setting logs_enabled to true.
+logs_enabled: true
+
+
