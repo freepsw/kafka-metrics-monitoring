@@ -27,7 +27,9 @@
 ## thread 1개, batch size 1개로 데이터를 kafka로 전송
 ## logstash 실행시 -b (batch.size) 옵션을 1로 설정해야, 
 ## broker에 데이터가 1건이라로 도착하면, logstash에서 consumer thread로 데이터를 전송하고, 이를 화면에 출력한다. 
-## -b 128로 하면, broker에서 128건을 가져올 때 까지 기다린 후 화면에 출력.
+## -b 128로 하면, broker에서 128건을 가져올 때 까지 기다린 후 화면에 출력함. 
+## path.data 옵션 : 각 logstash 프로세스에서 내부적으로 관리하기 위한 데이터를 저장하기 위한 공간 
+## 이전 producer에서 이미 default 경로(./data)를 사용하고 있으므로, consumer용 logstash에서 사용하기 위한 경로를 지정한다. 
 > mkdir ~/data
 > ~/logstash-7.15.0/bin/logstash -w 1 -b 1 --path.data ~/data/consumer_data -f ~/logstash_conf/consumer.conf
 ```
