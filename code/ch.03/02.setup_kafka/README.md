@@ -1,9 +1,14 @@
-# STEP 0. Connect to vm server using ssh
+# GCP에서 Kafka 구성하기
+- GCP(Google Cloud Platform)에서 VM 서버를 생성하고, apache kafka를 설치 및 실행한다. 
+![..](../../../images/ch03-02_setup_kafka.png)
+
+
+## STEP 0. Connect to vm server using ssh
 - "broker-01" 서버로 접속한 후, 아래의 명령어를 순서대로 실행한다. 
 
-# STEP1. Install the apache kafka 2.8.0 on gcp vm instance
+## STEP1. Install the apache kafka 2.8.0 on gcp vm instance
 
-## Java 설치 및 JAVA_HOME 설정
+### Java 설치 및 JAVA_HOME 설정
 ```
 > sudo yum install -y java
 
@@ -28,7 +33,7 @@
 > source ~/.bash_profile
 ```
 
-## Download apache kafka
+### Download apache kafka
 ```
 > cd ~
 > curl -O https://archive.apache.org/dist/kafka/2.8.0/kafka_2.12-2.8.0.tgz 
@@ -37,8 +42,8 @@
 > cd kafka_2.12-2.8.0
 ```
 
-## Run apache zookeeper & kafka
-### Run zookeeper
+### Run apache zookeeper & kafka
+#### Run zookeeper
 ```
 > cd ~/kafka_2.12-2.8.0
 
@@ -51,7 +56,7 @@
 
 ```
 
-### Run kafka broker
+#### Run kafka broker
 ```
 > cd ~/kafka_2.12-2.8.0
 ## producer 또는 consumer에서 broker에 접속할 때 사용 가능한 hostname 설정 
@@ -73,7 +78,7 @@ advertised.listeners=PLAINTEXT://broker-01:9092
 > env JMX_PORT=9999 bin/kafka-server-start.sh -daemon config/server.properties
 ```
 
-### Creeate a topic(kafka-mon)
+#### Creeate a topic(kafka-mon)
 ```
 > cd ~/kafka_2.12-2.8.0
 > bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --topic kafka-mon \
@@ -86,7 +91,7 @@ kafka-mon
 
 
 
-# STEP2. Check the broker metrics using the JConsole
+## STEP2. Check the broker metrics using the JConsole
 - JDK가 설치된 노트북에 아래 명령어 실행. 
 ```
 > jconsole
