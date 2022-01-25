@@ -27,7 +27,8 @@
 
 
 ### 모니터링 환경 구성도
-![Docker-Kafka-monitoring](images/kafka-dokcer-package.png)
+- 위 docker package를 설치하면 아래와 같은 모니터링 환경이 구성된다. 
+  - ![Docker-Kafka-monitoring](images/kafka-dokcer-package.png)
 - Docker 기반으로 3개의 서비스(elasticsearch, kibana, logstash)를 실행하고, 
 - logstash에서 kafka metric을 수집하여
 - elasticsearch로 저장한 후,
