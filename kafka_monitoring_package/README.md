@@ -1,12 +1,32 @@
-# Docker packages(Elastic stack) for easy monitoring of kafka brokers at one-click 
+# Docker packages for easy monitoring of kafka brokers at one-click 
+
+- 클릭 한번으로 kafka broker/producer/consumer의 jmx metric을 수집/저장/시각화 가능한 docker package.
+
+### 언제 사용할까?
+- Kafka를 다양한 환경(로컬, 개발서버, 운영서버 등)에서 설치 및 운영하다 보면,
+- Broker, Producer, Consumer 등의 성능, 안정성 등의 지표를 확인해야 하는 상황이 많이 발생한다
+- 하지만, 매번 이를 위해서 매번 jmx metric을 수집하기 위해서 
+  - 모든 필요한 프로그램을 설치하고, 
+  - 각 SW별 환경 설정을 변경/추가하고,
+  - 수집할 jmx metric에 대한 설정을 추가하는 것은 생각보다 많은 시간이 소요된다 (막상 해보면 갑자기 안되는 경우도 많고...)
+- 본 docker package는 위와 같은 절차를 docker라는 컨테이너 환경으로 가상화하여,
+  - 어떤 환경에서든 명려어 한번(docker-compose up)으로 쉽게 설치 및 실행가능하다.
+- 즉,
+  - 원하는 broker, producer, consumer의 ip, jmx port를 확인하여,
+  - 수집할 jmx metric만 선택하면, 
+  - 자동으로 jmx metric을 수집/저장/시각화하여 모니터링이 가능함. 
+
+### 설치 및 사용 절차
 - Docker-compose로 제공되는 elastic stack을 활용하여, 다수의 kafka broker에서 제공하는 jmx metric을 빠르게 수집할 환경 구성
 - 전체 과정은 docker-compose up 실행 한번으로 구동 가능 
 - broker의 ip(hostname)만 설정하면, 자동으로 기본 jmx metric을 수집하여 elasticsearch에 저장
   - 수집할 jmx metric은 업무별로 추가/삭제 가능
 - 사용자는 kibana에 접속하여 기본 dashboard를 이용하여 모니터링 가능 (각 업무별로 시각화 추가/변경 가능)
 - elastic stack을 구성하는 기본 docker-compose 설정은 docker-elk(https://github.com/deviantony/docker-elk)를 활용함. 
+![..](images/kafka-docker-package-process.png)
 
-## 모니터링 구성도
+
+### 모니터링 환경 구성도
 ![Docker-Kafka-monitoring](images/kafka-dokcer-package.png)
 - Docker 기반으로 3개의 서비스(elasticsearch, kibana, logstash)를 실행하고, 
 - logstash에서 kafka metric을 수집하여

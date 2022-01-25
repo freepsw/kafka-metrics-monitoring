@@ -1,4 +1,4 @@
-# GCP에서 Kafka 구성하기
+# GCP에서 Apache Kafka 설치 및 실행하기
 - GCP(Google Cloud Platform)에서 VM 서버를 생성하고, apache kafka를 설치 및 실행한다. 
 ![..](../../../images/ch03-02_setup_kafka.png)
 

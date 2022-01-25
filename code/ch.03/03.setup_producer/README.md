@@ -1,9 +1,17 @@
-# STEP 0. Connect to vm server using ssh
+# GCP에서 실습용 Kafka Producer 설치 및 실행하기
+
+
+### 시스템 구성도 
+- ”kafka-client” VM을 생성하고, kafka producer(logstash)를 실행하여 데이터 전송
+![..](../../../images/ch03-03_setup_producer.png)
+
+
+## STEP 0. Connect to vm server using ssh
 - "kafka-client" 서버로 접속한 후, 아래의 명령어를 순서대로 실행한다. 
 
-# STEP1. Run the logstash as a kafka producer.
+## STEP1. Run the logstash as a kafka producer.
 
-## Java 설치 및 JAVA_HOME 설정
+### Java 설치 및 JAVA_HOME 설정
 ```
 > sudo yum install -y java
 
@@ -31,15 +39,15 @@
 ```
 
 
-## Install the logstash(Kafka producer) and run logstash with the jmx option enabled
-### Download the test file (tracks.csv)
+### Install the logstash(Kafka producer) and run logstash with the jmx option enabled
+#### Download the test file (tracks.csv)
 - Procuder에서 broker로 전송할 데이터를 다운로드 받는다. 
 ```
 > curl -OL https://raw.githubusercontent.com/freepsw/demo-spark-analytics/master/00.stage1/tracks.csv
 > mv tracks.csv /tmp/tracks.csv
 ```
 
-### Install the logstash and run
+#### Install the logstash and run
 ```
 > cd ~
 > curl -LO https://artifacts.elastic.co/downloads/logstash/logstash-oss-7.15.0-linux-x86_64.tar.gz
@@ -48,7 +56,7 @@
 > cd logstash-7.15.0
 ```
 
-### Configure the logstash.yml
+#### Configure the logstash.yml
 - kafka producer로 동작하기 위해서, 일정 주기로 일정 메세지를 전달하도록 설정 필요.
 - logstash를 기본으로 사용하면, 전송 성능을 위해서 정의된 batch size 만큼을 보내도록 설정됨. 
 - 따라서 본 실습을 위해서는 1개의 thread가 한번에 1개의 메세지만 보내도록 설정한다. 
@@ -67,7 +75,7 @@ batch 개수 : -b, --pipeline.batch.siz
 ```
 
 
-### Run the logstash 
+#### Run the logstash 
 ```
 ## Add producer config file 
 > mkdir ~/logstash_conf
@@ -84,7 +92,7 @@ batch 개수 : -b, --pipeline.batch.siz
 > ~/logstash-7.15.0/bin/logstash -w 1 -b 1 -f ~/logstash_conf/producer.conf
 ```
 
-#### LS_JAVA_OPT 설정을 logstash 시작시에 기본으로 적용하는 방식
+##### LS_JAVA_OPT 설정을 logstash 시작시에 기본으로 적용하는 방식
 ```
 > vi logstash-7.15.0/config/jvm.options
 
@@ -93,7 +101,7 @@ batch 개수 : -b, --pipeline.batch.siz
 ```
 
 
-# STEP3. Check the producer metrics using the JConsole
+## STEP3. Check the producer metrics using the JConsole
 - JDK가 설치된 노트북에 아래 명령어 실행. 
 ```
 > jconsole
