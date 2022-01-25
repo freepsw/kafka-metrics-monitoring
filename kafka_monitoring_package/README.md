@@ -147,7 +147,7 @@ logstash_1       | }
 - STEP 3에서 import한 kibana dashboard가 정상적으로 실행되었다면,
 - 아래와 같은 화면을 확인할 수 있다. 
 - 본 dashboard는 사용자가 언제든지 추가/수정/삭제할 수 있으므로, 업무 목적에 따라서 최적화하여 활용이 가능하다. 
-  ![Docker-Kafka-monitoring](images/kafka-docker-package-kibana.png)
+  ![Docker-Kafka-monitoring](images/kafka-docker-package-dashboard.png)
 
 
 
